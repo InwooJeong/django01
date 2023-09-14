@@ -16,7 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import re_path
+from bookmark import views
+from django.views.generic import ListView,DetailView
+from bookmark.models import Bookmark
+from django.views.generic.detail import DetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('bookmark/', ListView.as_view(model=Bookmark),name='index'),
+    # path('bookmark/<int:pk>/',DetailView.as_view(model=Bookmark),name='detail'),
+    re_path(r"^$",views.home),
+    re_path(r"^detail$",views.detail),
 ]
